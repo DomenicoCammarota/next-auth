@@ -208,7 +208,6 @@ export default class {
       }
     })
     .then(data => {
-        console.log("THE DATA", data)
       if (data.success && data.success === true) {
         return Promise.resolve(true)
       } else {

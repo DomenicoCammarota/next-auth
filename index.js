@@ -119,6 +119,9 @@ module.exports = (nextApp, {
   // If an instance of nextApp was passed, let all requests to /_next/* pass
   // to it *before* Express Session and other middleware is called.
   if (nextApp) {
+
+    console.log("NEXT-AUTH EXPRESS DIR", __dirname)
+    
     expressApp.all('/_next/*', (req, res) => {
       let nextRequestHandler = nextApp.getRequestHandler()
       return nextRequestHandler(req, res)

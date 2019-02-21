@@ -124,7 +124,7 @@ module.exports = (nextApp, {
 
     if (staticDirectory) {
         console.log("NEXT-AUTH static directory will be ignored", staticDirectory)
-        expressApp.use(express.static(__dirname));
+        expressApp.use(Express.static(__dirname));
     }
 
     expressApp.all('/_next/*', (req, res) => {

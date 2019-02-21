@@ -122,8 +122,10 @@ module.exports = (nextApp, {
   // to it *before* Express Session and other middleware is called.
   if (nextApp) {
 
-    console.log("NEXT-AUTH EXPRESS DIR", __dirname)
-    console.log("NEXT-AUTH STATIC DIR", staticDirectory)
+    if (staticDirectory) {
+        console.log("NEXT-AUTH static directory will be ignored", staticDirectory)
+        expressApp.use(express.static(__dirname));
+    }
 
     expressApp.all('/_next/*', (req, res) => {
       let nextRequestHandler = nextApp.getRequestHandler()

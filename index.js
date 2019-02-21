@@ -21,8 +21,6 @@ module.exports = (nextApp, {
   expressApp = null,
   // Express Session (optional).
   expressSession = ExpressSession,
-  // Static file directory
-  staticDirectory = null,
   // Secret used to encrypt session data on the server.
   sessionSecret = 'change-me',
   // Session store for express-session.
@@ -121,12 +119,6 @@ module.exports = (nextApp, {
   // If an instance of nextApp was passed, let all requests to /_next/* pass
   // to it *before* Express Session and other middleware is called.
   if (nextApp) {
-
-    if (staticDirectory) {
-        console.log("NEXT-AUTH static directory will be ignored", staticDirectory)
-        expressApp.use(Express.static(__dirname));
-    }
-
     expressApp.all('/_next/*', (req, res) => {
       let nextRequestHandler = nextApp.getRequestHandler()
       return nextRequestHandler(req, res)
